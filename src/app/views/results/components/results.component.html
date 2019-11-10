@@ -1,0 +1,24 @@
+<div class="result-view">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12 result-header"><button (click)="traverseHome()">Home</button><p *ngIf="allQuestions.length > 0">Test is Complete!!</p> <p *ngIf="allQuestions.length == 0">Please take the test!!</p>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <p><span class="user-name-heading">Name: </span><span class="user-name-value">{{userDetails}}</span></p>
+        </div>
+    </div>
+
+    <div class="row questions-box">
+        <div class="col-lg-12 col-md-12 col-xs-12 result-div" *ngFor="let question of allQuestions">
+            <p class="question"><span class="question-head">Question {{question.id}} - </span>{{question.question}}</p>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                    <p class="answer"><span class="question-head">Correct Answer - </span><span class="correct-answer">{{question.correctAnswer}}</span></p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                    <p class="answer"><span class="question-head given-answer">Given Answer - </span><span class="correct-answer" *ngIf="question.selectedAnswerIndex != -1" [ngClass]="{'wrong-answer': question.correctAnswer !== question.options[question.selectedAnswerIndex]}">{{question.options[question.selectedAnswerIndex]}}</span><span *ngIf="question.selectedAnswerIndex == -1">Not Attempted</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

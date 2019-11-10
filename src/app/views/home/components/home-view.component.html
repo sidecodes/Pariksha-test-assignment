@@ -1,0 +1,36 @@
+<div class="landing-view">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12 button-col main-start"><button (click)="startTimer()">Start Test</button></div>
+        <div class="col-lg-12 col-md-12 col-xs-12 time-counter" *ngIf="currentQuestion?.id"><p>{{timeLeft}} Seconds Left</p> 
+    </div>
+    <div class="row" *ngIf="currentQuestion?.id">
+        <div class="col-lg-12 col-md-12 col-xs-12 button-col">
+            <p class="question"><span class="question-head">Question {{counter}} - </span>{{currentQuestion.question}}</p>
+        </div>
+        <div class="col-lg-12 col-md-12" *ngFor="let option of currentQuestion.options; let i = index">
+              <button class="option-button ripple" (click)="setSelectedAnswer(i);" [ngClass]="{'active': i == currentQuestion?.selectedAnswerIndex}"></button><span class="question-options">{{option}}</span>
+        </div>
+    </div>
+    <div class="row traverse-div" *ngIf="currentQuestion?.id">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 traverse-button button-col"><button class="previous traversal-button" [ngClass]="{'hide-button': counter == 0}" (click)="previousQuestion()">Previous Question</button></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 traverse-button button-col"><button class="traversal-button" [ngClass]="{'hide-button': counter == 2}" (click)="nextQuestion()">Next Question</button></div>
+    </div>
+    <div *ngIf="currentQuestion?.id == undefined" class="landing-page">
+        <div class="welcome-text"><img src="assets/logo.png"> Welcome to <span class="black-text">Pariksha</span><span class="yellow-text">.</span><span class="black-text">Co</span></div>
+        <ul class="bg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="row traverse-div">
+        <div class="col-lg-12 col-md-12 col-xs-12 button-col" *ngIf="counter == 2"><button (click)="submitTest()">Submit Test</button></div>
+    </div>
+</div>
